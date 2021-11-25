@@ -48,15 +48,16 @@ module load star/2.7.1a
 STAR --runMode alignReads --genomeDir ../STAR/hg19/  --readFilesIn $1 --runThreadN 80 --readFilesCommand zcat --outFilterMultimapNmax 1 --outFileNamePrefix ../mapped_output/$1.output --outSAMtype BAM SortedByCoordinate --outSAMattributes All
 
 
-####STEP5
+####STEP5 Deduplicate with UMI-tools
 #!/bin/bash
 #SBATCH --time=3:00:00
 #SBATCH --nodes=1
 #SBATCH --account=def-zhaolei
 #SBATCH --cpus-per-task=40
 umi_tools dedup -I $1 -S ../bam_dedup/$1
-
-#### Duplicate removal (deduplication) using UMI-tools
 ####umi_tools dedup -I <sampleX.bam> -L <sampleX.duprm.log> -S <sampleX.duprm.bam> --extract-umi-method read_id --method unique
+
+
+
 
 
