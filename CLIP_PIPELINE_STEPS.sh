@@ -1,6 +1,6 @@
 #!/bin/sh
 
-#  trim_demux.sh
+#  CLIP_PIPELINE_STEPS.sh
 #  
 #
 #  Created by james burns on 2021-01-20.
@@ -33,13 +33,10 @@ umi_tools extract --stdin=trimmed/$1 --bc-pattern=NNNNNNNNN --log=$1.log --stdou
 
 
 ####STEP4
+####MAP PROCESSED READS WITH STAR ON NIAGARA
 cd trimmed/processed
 
-
-####MAP PROCESSED READS WITH STAR ON NIAGARA
->>> sbatch
-
-###STARMAP.sh
+###SCRIPT -> STARMAP.sh
 #!/bin/bash
 #SBATCH --time=0:30:00
 #SBATCH --nodes=1
