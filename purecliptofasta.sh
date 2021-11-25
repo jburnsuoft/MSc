@@ -35,7 +35,7 @@ bedtools getfasta -fi hg19.fa -bed $1.$2.sorted.top$3.bed -fo $1.$2.sorted.top$3
 bedtools getfasta -fi hg19.fa -bed $1.$2.sorted.bed -fo $1.$2.sorted.fa
 
 #Cleanup - Make Directory For Outputs
-mkdir $1_fastas
+mkdir -p $1_fastas
 
 #Cleanup Pt2 - Move Fastas/Bedfiles to Folder
 mv $1.$2.* $1_fastas
