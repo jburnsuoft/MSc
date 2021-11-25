@@ -6,9 +6,10 @@
 #  Created by james burns on 2021-03-03.
 
 ## Requirements
-    # bedtools
+    # bedtools v2.30.0
+
 ## Usage
-    # BEDPREP.sh $1 $2 $3
+    # sh BEDPREP.sh $1 $2 $3
         # $1 - Pureclip Bedfile
         # $2 - Extension #nt
         # $3 - Pureclip Cut-off
