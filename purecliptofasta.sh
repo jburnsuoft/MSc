@@ -1,6 +1,6 @@
 #!/bin/sh
 
-#  purecliptofasta2.sh
+#  purecliptofasta.sh
 #  
 #
 #  Created by james burns
@@ -17,7 +17,7 @@
     # $1 - Pureclip Bedfile - Accepts Peak Files and Region Files
     # $2 - Number of nt to Extend Up/Downstream
     # $3 - Number of Top Pureclip Peaks to Extract
-    # Example Command Line: sh purecliptofasta2.sh SP1.bam.pureclip.peaks.bed 50 500
+    # Example Command Line: sh purecliptofasta.sh SP1.bam.pureclip.peaks.bed 50 500
 
 
 ## Command Sequence
