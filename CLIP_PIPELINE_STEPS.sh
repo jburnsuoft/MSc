@@ -18,9 +18,9 @@ cutadapt --action=none --no-indels -e 0 -g G3BP1_N_A=^NNNGGCANN -g G3BP1_N_B=^NN
 
 ####STEP 2 - ADAPTER TRIM + EXTRACT BARCODES
 ### RUN .sh with $1 - Example == ADAR1_A.fastq.1.gz
-
 cd demultiplex
 #mkdir trimmed
+### for f in *.fastq.gz; do sbatch trim.sh $f;done
 #!/bin/bash
 #SBATCH --time=3:00:00
 #SBATCH --nodes=1
