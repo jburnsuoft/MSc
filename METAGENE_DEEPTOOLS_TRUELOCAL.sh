@@ -31,9 +31,9 @@ computeMatrix scale-regions -S $1.bamcoverage.bw -R /Volumes/Monolith/clip/hg19.
        #--referencePoint TSS \ # alternatives: TES, center
        #-b 3000 -a 10000 \ # define the region you are interested in
        #-R hg19.gtf \
-       -S $1.bamcoverage.bw  \
-       --skipZeros \
-       -o $1.computematrix_TSS.gz \ # to be used with plotHeatmap and plotProfile
+       #-S $1.bamcoverage.bw  \
+       #--skipZeros \
+       #-o $1.computematrix_TSS.gz \ # to be used with plotHeatmap and plotProfile
        #--outFileSortedRegions $1.computematrix_TSS_genes.bed
 
 plotProfile -m $1.computematrix.scaled.gz \
