@@ -26,7 +26,7 @@
 #  - Overlap analysis results (e.g., directories "frac_top500" and "jaccard_top500")
 #
 # EXAMPLE USAGE:
-#   bash /workspaces/MSc/complete_pipeline.sh sample_RNA.fastq.gz sample.bed 50 500 sample.bam overlap_sample.bed pureclip_sample.bed
+#   bash $HOME/MSc/complete_pipeline.sh sample_RNA.fastq.gz sample.bed 50 500 sample.bam overlap_sample.bed pureclip_sample.bed
 ##########################################
 
 # Activate environment
@@ -110,7 +110,7 @@ OVERLAP_EXT=75     # for overlap and peakfile overlap steps
 # --- STEP 1: PURECLIP (Inline code) ---
 echo "Running PURECLIP on deduplicated BAM files..."
 mkdir -p pureclip
-for bam in /workspaces/MSc/bam_dedup/*.bam; do
+for bam in //MSc/bam_dedup/*.bam; do
     echo "Processing $bam with PURECLIP..."
     # Ensure BAM index exists
     if [ ! -f "${bam}.bai" ]; then
@@ -125,7 +125,7 @@ done
 
 # --- STEP 2: PURECLIP TO FASTA (Inline code) ---
 echo "Converting PURECLIP peaks BED to FASTA..."
-for bed in /workspaces/MSc/pureclip/*.pureclip.peaks.bed; do
+for bed in //MSc/pureclip/*.pureclip.peaks.bed; do
     echo "Converting $bed to FASTA..."
     # Extend peaks using bedtools slop
     bedtools slop -i "$bed" -b $EXTENSION_FA -g hg19.chrom.sizes.txt > "${bed}.${EXTENSION_FA}.bed"
@@ -138,7 +138,7 @@ done
 
 # --- STEP 3: OVERLAP ANALYSIS (Inline code) ---
 echo "Performing OVERLAP analysis on PURECLIP peaks..."
-for bed in /workspaces/MSc/pureclip/*.pureclip.peaks.bed; do
+for bed in //MSc/pureclip/*.pureclip.peaks.bed; do
     echo "Analyzing overlap for $bed..."
     # Create output directory using the overlap extension
     mkdir -p "${OVERLAP_EXT}.slopped"
@@ -148,7 +148,7 @@ done
 
 # --- STEP 4: BEDPREP (Inline code) ---
 echo "Running BEDPREP on PURECLIP regions..."
-for bed in /workspaces/MSc/pureclip/*.pureclip.regions.bed; do
+for bed in //MSc/pureclip/*.pureclip.regions.bed; do
     echo "Preparing BED for $bed..."
     mkdir -p "${EXTENSION_FA}.slopped"
     bedtools slop -i "$bed" -b $EXTENSION_FA -g $HOME/hg19.chrom.sizes.txt > "${bed}.${EXTENSION_FA}.bed"
@@ -161,7 +161,7 @@ done
 
 # --- STEP 5: METAGENE_DEEPTOOLS ANALYSIS (Inline code) ---
 echo "Running METAGENE_DEEPTOOLS on deduplicated BAM files..."
-for bam in /workspaces/MSc/bam_dedup/*.bam; do
+for bam in //MSc/bam_dedup/*.bam; do
     echo "Analyzing $bam with METAGENE_DEEPTOOLS..."
     # Generate BAM index if missing
     if [ ! -f "${bam}.bai" ]; then
@@ -182,7 +182,7 @@ done
 
 # --- STEP 6: PEAKFILE OVERLAPS (Inline code) ---
 echo "Running PEAKFILE OVERLAPS analysis..."
-for bed in /workspaces/MSc/pureclip/*.pureclip.peaks.bed; do
+for bed in //MSc/pureclip/*.pureclip.peaks.bed; do
     echo "Running peakfile overlaps for $bed..."
     mkdir -p "${OVERLAP_EXT}.slopped.peakfile"
     bedtools slop -i "$bed" -b $OVERLAP_EXT -g $HOME/hg19.chrom.sizes.txt > "${bed}.${OVERLAP_EXT}.bed"
